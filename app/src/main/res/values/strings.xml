@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">SMPProject</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="question_words">
+        <item>what</item>
+        <item>who</item>
+        <item>why</item>
+        <item>when</item>
+        <item>where</item>
+        <item>which</item>
+        <item>how</item>
+    </string-array>
 </resources>

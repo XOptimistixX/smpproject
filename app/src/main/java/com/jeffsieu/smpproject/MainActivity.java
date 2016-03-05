@@ -16,23 +16,20 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
 	private TextView mTextView;
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
 		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-		fab.setOnClickListener(new View.OnClickListener()
-		{
+		fab.setOnClickListener(new View.OnClickListener(){
 			@Override
-			public void onClick(View view)
-			{
+			public void onClick(View view){
 				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 			}
 		});
@@ -40,32 +37,28 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
+	public boolean onCreateOptionsMenu(Menu menu){
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu_main, menu);
 		return true;
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
+	public boolean onOptionsItemSelected(MenuItem item){
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 
 		//noinspection SimplifiableIfStatement
-		if (id == R.id.action_settings)
-		{
+		if (id == R.id.action_settings){
 			return true;
 		}
 
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void onSpeechClicked(View view)
-	{
+	public void onSpeechClicked(View view){
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 		intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "com.jeffsieu.smpproject");
 		intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
@@ -73,12 +66,14 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		switch (requestCode)
-		{
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		switch (requestCode){
 			case 1:
-				mTextView.setText(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0));
+				if (data != null){
+					ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+					String speechText = result.get(0);
+					mTextView.setText(speechText);
+				}
 			default:
 				super.onActivityResult(requestCode, resultCode, data);
 		}
