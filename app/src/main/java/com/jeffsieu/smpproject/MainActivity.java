@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 		fab.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View view){
-				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+				onSpeechClicked();
 			}
 		});
 		mTextView = (TextView) findViewById(R.id.textview);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void onSpeechClicked(View view){
+	public void onSpeechClicked(){
 		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 		intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "com.jeffsieu.smpproject");
 		intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
@@ -73,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
 			case 1:
 				if (data != null){
 					ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-					String speechText = result.get(0);
+					String speechText = result.get(0).toLowerCase();
 					List<String> questionWords = Arrays.asList(getResources().getStringArray(R.array.question_words));
 					for (String s: questionWords){
-						speechText.replaceAll(s, "");
+						speechText = speechText.replace(s, "");
 					}
 					mTextView.setText(speechText);
 				}
