@@ -19,12 +19,6 @@
         android:layout_height="wrap_content"
         android:text="Speech Recognizer crap"/>
 
-    <Button
-        android:onClick="onSpeechClicked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recognize speech"/>
-
     <TextView
         android:id="@+id/textview"
         android:layout_width="wrap_content"
