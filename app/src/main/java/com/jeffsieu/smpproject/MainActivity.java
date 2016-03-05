@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 	private TextView mTextView;
@@ -72,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
 				if (data != null){
 					ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 					String speechText = result.get(0);
+					List<String> questionWords = Arrays.asList(getResources().getStringArray(R.array.question_words));
+					for (String s: questionWords){
+						speechText.replaceAll(s, "");
+					}
 					mTextView.setText(speechText);
 				}
 			default:
