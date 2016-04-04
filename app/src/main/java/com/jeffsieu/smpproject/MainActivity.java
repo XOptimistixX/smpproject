@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import utils.WordUtils;
+
 public class MainActivity extends AppCompatActivity
 {
 	private TextView mTextView;
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity
 		intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "com.jeffsieu.smpproject");
 		intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
 		startActivityForResult(intent, 1);
+		WordUtils.processSentence("lal");
 	}
 
 	@Override
