@@ -1,16 +1,21 @@
-package com.jeffsieu.smpproject;
+package model.word;
 
 import java.util.ArrayList;
 
 /**
  * Created by Jeff on 4/4/2016.
  */
-public class Verb
+public class Verb extends Word
 {
-	public Noun subject;
-	public Noun object;
+	protected Noun subject;
+	protected Noun object;
 
 	private ArrayList<Adverb> adverbs;
+
+	public Verb(String value)
+	{
+		super(value);
+	}
 
 	public Noun getSubject()
 	{

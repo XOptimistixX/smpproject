@@ -1,17 +1,22 @@
-package com.jeffsieu.smpproject;
+package model.word;
 
 import java.util.ArrayList;
 
 /**
  * Created by Jeff on 4/4/2016.
  */
-public class Noun
+public class Noun extends Word
 {
-	private ArrayList<Verb> verbs;
-	private ArrayList<Adjective> adjectives;
+	protected ArrayList<Verb> verbs;
+	protected ArrayList<Adjective> adjectives;
 
-	private Noun owner;
-	private ArrayList<Noun> children;
+	protected Noun owner;
+	protected ArrayList<Noun> children;
+
+	public Noun(String value)
+	{
+		super(value);
+	}
 
 	public ArrayList<Verb> getVerbs()
 	{
